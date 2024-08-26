@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './Navigation';
-import CreateRoad from './pages/CreateRoad';
+import CreateRoad from './pages/create-road/CreateRoad';
 import StartLearning from './pages/StartLearning';
 import TuneParameters from './pages/TuneParameters';
 import HomePage from './pages/HomePage';
