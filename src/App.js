@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import Navigation from './Navigation';
 import CreateRoad from './pages/create-road/CreateRoad';
 import StartLearning from './pages/StartLearning';
 import TuneParameters from './pages/TuneParameters';
@@ -9,7 +8,6 @@ import PageNotFound from './pages/PageNotFound';
 function App() {
   return (
     <>
-      <Navigation />
       <Routes>
         <Route path='/' index element={<HomePage />} />
         <Route path='/create' element={<CreateRoad />} />
