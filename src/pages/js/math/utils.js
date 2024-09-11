@@ -13,6 +13,19 @@ export function getNearestPoint(loc, points, threshold = Number.MAX_SAFE_INTEGER
    return nearest;
 }
 
+export function getNearestSegment(loc, segments, threshold = Number.MAX_SAFE_INTEGER) {
+   let minDist = Number.MAX_SAFE_INTEGER;
+   let nearest = null;
+   for (const seg of segments) {
+      const dist = seg.distanceToPoint(loc);
+      if (dist < minDist && dist < threshold) {
+         minDist = dist;
+         nearest = seg;
+      }
+   }
+   return nearest;
+}
+
 export function distance(p1, p2) {
    return Math.hypot(p1.x - p2.x, p1.y - p2.y);
 }

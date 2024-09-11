@@ -7,8 +7,9 @@ import { Building } from "./items/building";
 import { Tree } from "./items/tree";
 
 export class World {
-   constructor(graph, 
-      roadWidth = 100, 
+   constructor(
+      graph,
+      roadWidth = 100,
       roadRoundness = 10,
       buildingWidth = 150,
       buildingMinLength = 150,
@@ -27,6 +28,11 @@ export class World {
       this.roadBorders = [];
       this.buildings = [];
       this.trees = [];
+      this.laneGuides = [];
+
+      this.markings = [];
+
+      this.frameCount = 0;
 
       this.generate();
    }
@@ -42,12 +48,26 @@ export class World {
       this.roadBorders = Polygon.union(this.envelopes.map((e) => e.poly));
       this.buildings = this.#generateBuildings();
       this.trees = this.#generateTrees();
+
+      this.laneGuides.length = 0;
+      this.laneGuides.push(...this.#generateLaneGuides());
+   }
+
+   #generateLaneGuides() {
+      const tmpEnvelopes = [];
+      for (const seg of this.graph.segments) {
+         tmpEnvelopes.push(
+            new Envelope(seg, this.roadWidth / 2, this.roadRoundness)
+         );
+      }
+      const segments = Polygon.union(tmpEnvelopes.map((e) => e.poly));
+      return segments;
    }
 
    #generateTrees() {
       const points = [
          ...this.roadBorders.map((s) => [s.p1, s.p2]).flat(),
-         ...this.buildings.map((b) => b.base.points).flat()
+         ...this.buildings.map((b) => b.base.points).flat(),
       ];
       const left = Math.min(...points.map((p) => p.x));
       const right = Math.max(...points.map((p) => p.x));
@@ -56,7 +76,7 @@ export class World {
 
       const illegalPolys = [
          ...this.buildings.map((b) => b.base),
-         ...this.envelopes.map((e) => e.poly)
+         ...this.envelopes.map((e) => e.poly),
       ];
 
       const trees = [];
@@ -70,7 +90,10 @@ export class World {
          // check if tree inside or nearby building / road
          let keep = true;
          for (const poly of illegalPolys) {
-            if (poly.containsPoint(p) || poly.distanceToPoint(p) < this.treeSize / 2) {
+            if (
+               poly.containsPoint(p) ||
+               poly.distanceToPoint(p) < this.treeSize / 2
+            ) {
                keep = false;
                break;
             }
@@ -172,8 +195,12 @@ export class World {
    }
 
    draw(ctx, viewPoint) {
+
       for (const env of this.envelopes) {
          env.draw(ctx, { fill: "#BBB", stroke: "#BBB", lineWidth: 15 });
+      }
+      for (const marking of this.markings) {
+         marking.draw(ctx);
       }
       for (const seg of this.graph.segments) {
          seg.draw(ctx, { color: "white", width: 4, dash: [10, 10] });
