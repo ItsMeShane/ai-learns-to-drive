@@ -1,11 +1,11 @@
 import React from "react";
-import { Wrapper } from "../GlobalComponents";
+import { MyWrapper } from "../GlobalComponents";
 
 const PageNotFound = () => {
     return (
-        <Wrapper>
+        <MyWrapper>
             page not found
-        </Wrapper>
+        </MyWrapper>
     );
 };
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const MyWrapper = styled.div`
    height: 100vh;
    display: flex;
    justify-content: center;
@@ -12,7 +12,7 @@ export const Container = styled.div`
    box-shadow: 5px 5px 25px 5px rgba(0, 0, 0, 0.5);
 `;
 
-export const Button = styled.div`
+export const MyButton = styled.div`
    position: var(--position);
    bottom: var(--offsetBottom);
    top: var(--offsettop);

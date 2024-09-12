@@ -5,7 +5,7 @@ import { Viewport } from './js/viewport';
 import { World } from './js/world';
 import { scale } from './js/math/utils';
 import { Link } from 'react-router-dom';
-import { Button, EditorContainer } from '../GlobalComponents';
+import { MyButton, EditorContainer } from '../GlobalComponents';
 
 const CreateWorld = () => {
    const canvasRef = useRef(null);
@@ -80,7 +80,7 @@ const CreateWorld = () => {
    return (
       <EditorContainer>
          <canvas ref={canvasRef} id='myCanvas'></canvas>
-         <Button
+         <MyButton
             style={{
                '--offsetBottom': '135px',
                '--offsetRight': '15px',
@@ -89,8 +89,8 @@ const CreateWorld = () => {
             onClick={handleReset}
          >
             <a>Reset 🗑️</a>
-         </Button>
-         <Button
+         </MyButton>
+         <MyButton
             style={{
                '--offsetBottom': '75px',
                '--offsetRight': '15px',
@@ -99,8 +99,8 @@ const CreateWorld = () => {
             onClick={handleSave}
          >
             <a>Save 💾</a>
-         </Button>
-         <Button
+         </MyButton>
+         <MyButton
             style={{
                '--offsetBottom': '15px',
                '--offsetRight': '15px',
@@ -108,8 +108,8 @@ const CreateWorld = () => {
             }}
          >
             <Link to={'/start'}>Continue ➜</Link>
-         </Button>
-         <Button
+         </MyButton>
+         <MyButton
             style={{
                '--offsettop': '15px',
                '--offsetRight': '15px',
@@ -117,8 +117,8 @@ const CreateWorld = () => {
             }}
          >
             <a>Edit Road</a>
-         </Button>
-         <Button
+         </MyButton>
+         <MyButton
             style={{
                '--offsettop': '75px',
                '--offsetRight': '15px',
@@ -126,7 +126,7 @@ const CreateWorld = () => {
             }}
          >
             <a>Place Vehicle</a>
-         </Button>
+         </MyButton>
       </EditorContainer>
    );
 };

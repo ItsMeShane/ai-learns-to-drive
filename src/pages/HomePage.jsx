@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../GlobalComponents";
+import { MyButton } from "../GlobalComponents";
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
@@ -14,11 +14,11 @@ const Wrapper = styled.div`
 const HomePage = () => {
     return (
         <Wrapper>
-            <Button>
+            <MyButton>
                 <Link to={'/create'}>
                     Get Started
                 </Link>
-            </Button>
+            </MyButton>
         </Wrapper>
     );
 };

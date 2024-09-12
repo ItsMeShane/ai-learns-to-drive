@@ -1,14 +1,14 @@
 import React from "react";
-import { Container, Wrapper } from "../GlobalComponents";
+import { Container, MyWrapper } from "../GlobalComponents";
 
 
 const StartLearning = () => {
     return (
-        <Wrapper>
+        <MyWrapper>
             <Container>
                 start learning
             </Container>
-        </Wrapper>
+        </MyWrapper>
     );
 };
 
